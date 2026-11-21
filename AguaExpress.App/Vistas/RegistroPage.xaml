@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AguaExpress.App.ViewModels" x:Class="AguaExpress.App.Vistas.RegistroPage" Title="Crear cuenta">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="12">
+            <Entry Placeholder="Nombre completo" Text="{Binding NombreCompleto}"/>
+            <Entry Placeholder="Correo electrónico" Keyboard="Email" Text="{Binding Correo}"/>
+            <Entry Placeholder="Teléfono" Keyboard="Telephone" Text="{Binding Telefono}"/>
+            <Entry Placeholder="Contraseña (mínimo 6 caracteres)" IsPassword="True" Text="{Binding Contrasena}"/>
+            <Button Text="Registrarme" Command="{Binding RegistrarCommand}"/>
+            <ActivityIndicator IsRunning="{Binding Ocupado}" Color="{StaticResource Primario}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

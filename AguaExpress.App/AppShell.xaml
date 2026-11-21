@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:v="clr-namespace:AguaExpress.App.Vistas"
+       x:Class="AguaExpress.App.AppShell"
+       FlyoutBehavior="Disabled" Title="AguaExpress"
+       Shell.BackgroundColor="#0077B6"
+       Shell.ForegroundColor="White"
+       Shell.TitleColor="White"
+       Shell.TabBarBackgroundColor="White"
+       Shell.TabBarForegroundColor="#0077B6"
+       Shell.TabBarTitleColor="#0077B6"
+       Shell.TabBarUnselectedColor="Gray">
+
+    <ShellContent Route="login" ContentTemplate="{DataTemplate v:LoginPage}" Shell.NavBarIsVisible="False" Shell.TabBarIsVisible="False"/>
+
+    <TabBar Route="admin">
+        <ShellContent Title="Panel" ContentTemplate="{DataTemplate v:PanelPage}"/>
+        <ShellContent Title="Pedidos" ContentTemplate="{DataTemplate v:PedidosAdminPage}"/>
+        <ShellContent Title="Inventario" ContentTemplate="{DataTemplate v:InventarioPage}"/>
+        <ShellContent Title="Trabajadores" ContentTemplate="{DataTemplate v:TrabajadoresPage}"/>
+    </TabBar>
+
+    <TabBar Route="vendedor">
+        <ShellContent Title="Mis entregas" ContentTemplate="{DataTemplate v:EntregasPage}"/>
+    </TabBar>
+
+    <TabBar Route="cliente">
+        <ShellContent Title="Pedir agua" ContentTemplate="{DataTemplate v:NuevoPedidoPage}"/>
+        <ShellContent Route="MisPedidos" Title="Mis pedidos" ContentTemplate="{DataTemplate v:MisPedidosPage}"/>
+    </TabBar>
+</Shell>

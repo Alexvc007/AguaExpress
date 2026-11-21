@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AguaExpress.App.ViewModels" x:Class="AguaExpress.App.Vistas.NuevoPedidoPage" Title="Pedir agua">
+    <ContentPage.ToolbarItems><ToolbarItem Text="Salir" Command="{Binding CerrarSesionCommand}"/></ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="12" Spacing="8">
+            <Label Text="¿Qué sifones necesitas?" FontSize="18" FontAttributes="Bold" Margin="4,0"/>
+            <VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Tarjeta}" Margin="0,4">
+                            <Grid ColumnDefinitions="*,Auto,40,Auto" ColumnSpacing="8">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Sifon.Nombre}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Sifon.PrecioTexto}" TextColor="Gray"/>
+                                </VerticalStackLayout>
+                                <Button Grid.Column="1" Text="−" WidthRequest="46" HeightRequest="46" MinimumHeightRequest="46" Padding="0" Command="{Binding MenosCommand}"/>
+                                <Label Grid.Column="2" Text="{Binding Cantidad}" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                                <Button Grid.Column="3" Text="＋" WidthRequest="46" HeightRequest="46" MinimumHeightRequest="46" Padding="0" Command="{Binding MasCommand}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label Text="Dirección de entrega" FontSize="18" FontAttributes="Bold" Margin="4,8,4,0"/>
+            <Entry Placeholder="Calle, número, barrio" Text="{Binding Direccion}"/>
+            <Entry Placeholder="Referencia (casa verde, portón negro…)" Text="{Binding Referencia}"/>
+            <Entry Placeholder="Notas para el repartidor (opcional)" Text="{Binding Notas}"/>
+            <Button Text="📍 Usar mi ubicación actual" Style="{StaticResource BotonSecundario}" Command="{Binding UsarUbicacionCommand}"/>
+            <Label Text="{Binding UbicacionTexto}" TextColor="Gray" FontSize="12"/>
+            <Label Text="{Binding TotalTexto}" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource PrimarioOscuro}" HorizontalOptions="End"/>
+            <Button Text="Confirmar pedido" Command="{Binding ConfirmarPedidoCommand}"/>
+            <ActivityIndicator IsRunning="{Binding Ocupado}" Color="{StaticResource Primario}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AguaExpress.App.ViewModels" x:Class="AguaExpress.App.Vistas.EntregasPage" Title="Mis entregas">
+    <ContentPage.ToolbarItems><ToolbarItem Text="Salir" Command="{Binding CerrarSesionCommand}"/></ContentPage.ToolbarItems>
+    <RefreshView IsRefreshing="{Binding Ocupado}" Command="{Binding CargarCommand}">
+        <CollectionView ItemsSource="{Binding Pedidos}" EmptyView="No tienes entregas asignadas 🎉">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Tarjeta}">
+                        <VerticalStackLayout Spacing="5">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label Text="{Binding ClienteNombre}" FontAttributes="Bold" FontSize="18"/>
+                                <Label Grid.Column="1" Text="{Binding EstadoTexto}" TextColor="{StaticResource Primario}" FontAttributes="Bold"/>
+                            </Grid>
+                            <Label Text="{Binding Direccion}"/>
+                            <Label Text="{Binding Referencia, StringFormat='Ref: {0}'}" TextColor="Gray" FontSize="13"/>
+                            <Label Text="{Binding ItemsTexto}" FontAttributes="Bold"/>
+                            <Label Text="{Binding TotalTexto, StringFormat='Cobrar: {0}'}" TextColor="{StaticResource Exito}" FontAttributes="Bold"/>
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8" Margin="0,6,0,0">
+                                <Button Grid.Column="0" Text="🧭 Ir" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EntregasViewModel}}, Path=IrCommand}" CommandParameter="{Binding .}"/>
+                                <Button Grid.Column="1" Text="🔔 Notificar" BackgroundColor="{StaticResource Alerta}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EntregasViewModel}}, Path=NotificarCommand}" CommandParameter="{Binding .}"/>
+                                <Button Grid.Row="1" Grid.Column="0" Text="✅ Entregado" BackgroundColor="{StaticResource Exito}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EntregasViewModel}}, Path=EntregadoCommand}" CommandParameter="{Binding .}"/>
+                                <Button Grid.Row="1" Grid.Column="1" Text="⚠️ No entregado" BackgroundColor="{StaticResource Peligro}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EntregasViewModel}}, Path=NoEntregadoCommand}" CommandParameter="{Binding .}"/>
+                                <Button Grid.Row="2" Grid.ColumnSpan="2" Text="📞 Llamar al cliente" Style="{StaticResource BotonSecundario}" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:EntregasViewModel}}, Path=LlamarCommand}" CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

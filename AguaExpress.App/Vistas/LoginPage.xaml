@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AguaExpress.App.ViewModels" x:Class="AguaExpress.App.Vistas.LoginPage" Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="28" Spacing="14" VerticalOptions="Center">
+            <Label Text="💧" FontSize="72" HorizontalOptions="Center"/>
+            <Label Text="AguaExpress" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimarioOscuro}" HorizontalOptions="Center"/>
+            <Label Text="Tu agua, a domicilio" TextColor="Gray" HorizontalOptions="Center" Margin="0,0,0,16"/>
+            <Entry Placeholder="Correo electrónico" Keyboard="Email" Text="{Binding Correo}"/>
+            <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding Contrasena}" ReturnCommand="{Binding IngresarCommand}"/>
+            <Button Text="Ingresar" Command="{Binding IngresarCommand}"/>
+            <Button Text="Crear cuenta de cliente" Style="{StaticResource BotonSecundario}" Command="{Binding IrARegistroCommand}"/>
+            <ActivityIndicator IsRunning="{Binding Ocupado}" Color="{StaticResource Primario}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AguaExpress.Api/AguaExpress.Api.csproj" />
+  <Project Path="AguaExpress.App/AguaExpress.App.csproj" />
+</Solution>
